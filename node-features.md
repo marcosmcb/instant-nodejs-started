@@ -125,3 +125,7 @@ query('SELECT * FROM articles', function(err, result)
 ### When you write data into a writable stream, that operation is non-blocking, which means that the data may get stored somewhere before it's actually sent out to the underlying resource.
 ### If the _write_ operation returns false, the stream will later emit a _drain_ event once the buffer gets flushed.
  
+# Piping
+
+### If you have a _readable_ and _writable_ stream you can connect one to the other using pipe mechanism.
+
