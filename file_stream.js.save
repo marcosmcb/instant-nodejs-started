@@ -1,0 +1,105 @@
+var fs = require('fs');
+
+var stream = fs.createReadStream('# Top 5 features you need to know about
+
+### Short list of the core modules
+
+* __net__    : For creating TCP clients and servers
+* __http__   : For creating and consuming HTTP services
+* __fs__     : For accessing and manipulating files
+* __dns__    : For using the DNS service
+* __events__ : For creating event emitters
+* __stream__ : For creating streams
+* __os__     : For accessing some local operating system statistics
+* __assert__ : For assertion test
+* __util__   : For miscellaneous utilities
+
+# User modules
+
+### Node.js supports three types of modules:
+	1- Core Modules;
+	2- User Modules;
+	3- Third-party modules
+
+# Node Package Manager (NPM)
+
+### Node.js has a way of browsing, querying, installing and publishing third-party modules into a 
+central repository, and It's called NPM. NPM stands for Node Package Manager, and it consists of two things:
+
+- A module repository that is fully browsable, accessible at [Node.js](https://npmjs.org/)
+- A command-line utility
+
+# The callback pattern
+
+### Node.js uses the event-driven model of doing I/O, which means that every time that the current process has to talk to the filesystem or the network, It does so in a non-blocking manner.
+
+#### Example of pseudo-code for typical blocking-code:
+
+```javascript
+
+var result = query('SELECT * FROM articles');
+console.log('result:', result);
+
+```
+
+
+### In event-driven I/O, instead of returning the result of remote operation, you pass a callback that gets involked once that operation is finished.
+### On such platform, the equivalent of doing a database query similar to the previous blocking code would be:
+
+```javascript
+
+query('SELECT * FROM articles', function(result)
+{
+	console.log('result:', result);
+});
+
+```
+
+
+### Correct blocking version:
+
+```javascript
+
+try
+{
+	var result = query('SELECT * FROM articles');
+	console.log('result:', result);
+}
+catch( err )
+{
+	console.error('Error while performing query: ' , err.message);
+}
+
+```
+
+### And the equivalent event-driven version would be:
+
+```javascript
+
+query('SELECT * FROM articles', function(err, result)
+{
+	if( err )
+		console.error('error while processing query: ' , err.message);
+	else
+		console.log('result: ' , result);
+});
+
+```
+
+
+### In this last example, we are witnessing the Node.js callback pattern, which has two characteristics:
+
+* __Callback last__: The callback is the last argument of the function that initates I/O.
+* __Error first__  : The callback expects an error as the first argument and the results in the following arguments. If there is no error, the first argument is _undefined_ or _null_. If an error exists, this object should be a JavaScript error instance');
+
+stream.on('readable', function()
+{
+	var chunk;
+	while(chunk = stream.read())
+		console.log('got NPM data chunk of %d bytes', chunk.length);
+});
+
+stream.once('end', function()
+{
+	console.log('stream ended');
+});

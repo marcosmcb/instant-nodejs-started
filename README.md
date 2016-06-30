@@ -21,14 +21,14 @@
 
 # Node Package Manager (NPM)
 
-### Node.js has a way of browsing, querying, installing and publishing third-party modules into a central repository, and It's called NPM. NPM stands for Node Package Manager, and it consists of two things:
+###### Node.js has a way of browsing, querying, installing and publishing third-party modules into a central repository, and It's called NPM. NPM stands for Node Package Manager, and it consists of two things:
 
 - A module repository that is fully browsable, accessible at [Node.js](https://npmjs.org/)
 - A command-line utility
 
 # The callback pattern
 
-### Node.js uses the event-driven model of doing I/O, which means that every time that the current process has to talk to the filesystem or the network, It does so in a non-blocking manner.
+###### Node.js uses the event-driven model of doing I/O, which means that every time that the current process has to talk to the filesystem or the network, It does so in a non-blocking manner.
 
 #### Example of pseudo-code for typical blocking-code:
 
@@ -40,8 +40,8 @@ console.log('result:', result);
 ```
 
 
-### In event-driven I/O, instead of returning the result of remote operation, you pass a callback that gets involked once that operation is finished.
-### On such platform, the equivalent of doing a database query similar to the previous blocking code would be:
+###### In event-driven I/O, instead of returning the result of remote operation, you pass a callback that gets involked once that operation is finished.
+###### On such platform, the equivalent of doing a database query similar to the previous blocking code would be:
 
 ```javascript
 
@@ -93,39 +93,39 @@ query('SELECT * FROM articles', function(err, result)
 
 # Chaining I/O
 
-### When performing chaining, some I/O depends on the result of other I/O; you can chain the two operations
-### by nesting the callback functions. For instance, if you want to verify the size of a file and only read it if it's smaller than 1KB, you could write this into a file named read_file_conditional.js
+###### When performing chaining, some I/O depends on the result of other I/O; you can chain the two operations
+###### by nesting the callback functions. For instance, if you want to verify the size of a file and only read it if it's smaller than 1KB, you could write this into a file named read_file_conditional.js
 
 # Event emitter 
 
-### The callback pattern is useful when you have I/O operations that have a clear end. If you have an object in which events happen throughout time, the callback pattern is not a good fit. Thankfully, Node.js has a built-in pattern named event emitter.
+###### The callback pattern is useful when you have I/O operations that have a clear end. If you have an object in which events happen throughout time, the callback pattern is not a good fit. Thankfully, Node.js has a built-in pattern named event emitter.
 
 # Parallelizing I/O
 
-### Parallelizing I/O is natural in Node.js; You don't need to spawn new threads of execution, simply start two or more I/O operations in parallel. In the following example, we want to make some HTTP requests in parallel to http://www.twitter.com/ .
+###### Parallelizing I/O is natural in Node.js; You don't need to spawn new threads of execution, simply start two or more I/O operations in parallel. In the following example, we want to make some HTTP requests in parallel to http://www.twitter.com/ .
 
 # Streams
 
-### A stream represents a source of data read or written throughout time. For instance, you can read the entire contents of a file at once, but if the file is large, this process will take some time and will consume memory. Alternatively, you can read it as a stream, where you get a piece of the file content at a time.
+###### A stream represents a source of data read or written throughout time. For instance, you can read the entire contents of a file at once, but if the file is large, this process will take some time and will consume memory. Alternatively, you can read it as a stream, where you get a piece of the file content at a time.
 
 
 # The writable streams
 
-### Besides being the source of data, a stream can alternatively or simultaneously be the target of data
-### data-a writable stream. You can write data out to a writable stream, and you can also end one. There are several examples of writable streams in Node.js. You can, for instance, create a writable file stream.
+###### Besides being the source of data, a stream can alternatively or simultaneously be the target of data
+###### data-a writable stream. You can write data out to a writable stream, and you can also end one. There are several examples of writable streams in Node.js. You can, for instance, create a writable file stream.
 
 
 # The duplex streams
 
-### A stream can be both writable and readable at the same time, permiting both obtaining data from it and writing data to it. An example of such a stream can a TCP connection.
+###### A stream can be both writable and readable at the same time, permiting both obtaining data from it and writing data to it. An example of such a stream can a TCP connection.
 
 # Stream flow control
 
-### In Node.js, streams are not only about sending and receiving data but also about controlling the flow of that data.
-### When you write data into a writable stream, that operation is non-blocking, which means that the data may get stored somewhere before it's actually sent out to the underlying resource.
-### If the _write_ operation returns false, the stream will later emit a _drain_ event once the buffer gets flushed.
+###### In Node.js, streams are not only about sending and receiving data but also about controlling the flow of that data.
+###### When you write data into a writable stream, that operation is non-blocking, which means that the data may get stored somewhere before it's actually sent out to the underlying resource.
+###### If the _write_ operation returns false, the stream will later emit a _drain_ event once the buffer gets flushed.
  
 # Piping
 
-### If you have a _readable_ and _writable_ stream you can connect one to the other using pipe mechanism.
+###### If you have a _readable_ and _writable_ stream you can connect one to the other using pipe mechanism.
 
